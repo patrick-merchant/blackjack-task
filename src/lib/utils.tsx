@@ -327,17 +327,14 @@ export const displayImages = (cards: ICard[]) => {
     }
 
     return (
-      <>
-        <div className="card" data-flip="no">
-          <img className="card-back" alt="Back of card" src={backOfCard} />
-          <img
-            className="card-front"
-            id={index.toString()}
-            alt={JSON.stringify(card)}
-            src={findImage}
-          />
-        </div>
-      </>
+      <div className="card" data-flip="no" key={index}>
+        <img className="card-back" alt="Back of card" src={backOfCard} />
+        <img
+          className="card-front"
+          alt={JSON.stringify(card)}
+          src={findImage}
+        />
+      </div>
     );
   });
 };

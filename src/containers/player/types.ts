@@ -13,4 +13,10 @@ export interface IPlayerProps {
   drawPlayerCard: (numOfCards?: number) => void;
   isRoundDone: boolean;
   setIsRoundDone: Dispatch<SetStateAction<boolean>>;
+  displayImages: (Cards: ICard[]) => JSX.Element[];
+}
+
+export interface IPlayerCardsProps {
+  playerCards: ICard[];
+  displayImages: (Cards: ICard[]) => JSX.Element[];
 }

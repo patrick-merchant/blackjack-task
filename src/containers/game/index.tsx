@@ -3,6 +3,7 @@ import { shuffle, createDeck } from "../../lib/utils";
 import Player from "../player";
 import { ICard } from "../../lib/types";
 import { IGameProps } from "./types";
+import { displayImages } from "../../lib/utils";
 
 const Game = ({ customDeck }: IGameProps) => {
   const [deck, setDeck] = useState(
@@ -17,17 +18,25 @@ const Game = ({ customDeck }: IGameProps) => {
     setDeck((deck) => deck.slice(0, deck.length - numOfCards));
     const nextCards = deck.slice(deck.length - numOfCards, deck.length);
     setPlayerCards((prevPlayerCards) => [...prevPlayerCards, ...nextCards]);
-    console.log(playerCards);
   };
 
   const startRound = () => {
-    setPlayerCards([]);
     setPlayerCount(0);
     setIsRoundDone(false);
     setIsPlayerBust(false);
+    setPlayerCards([]);
     drawPlayerCard(2);
   };
+
+  const resetCardFlip = () => {
+    const element = document.querySelectorAll("#player-cards > .card");
+    for (let i = 0; i < element.length; i++) {
+      element[i].setAttribute("data-flip", "no");
+    }
+  };
+
   const handleStartRound = () => {
+    resetCardFlip();
     startRound();
   };
 
@@ -54,6 +63,7 @@ const Game = ({ customDeck }: IGameProps) => {
         drawPlayerCard={drawPlayerCard}
         isRoundDone={isRoundDone}
         setIsRoundDone={setIsRoundDone}
+        displayImages={displayImages}
       />
     </>
   );

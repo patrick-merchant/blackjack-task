@@ -1,0 +1,48 @@
+#player-cards {
+  margin: auto;
+
+  width: 50%;
+  height: 240px;
+  padding: 0.5rem;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  width: 10rem;
+  height: 14rem;
+  right: 0;
+}
+
+.card-back,
+.card-front {
+  position: absolute;
+  width: 10rem;
+  height: 14rem;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ---------- Flip Card Effect ----------- */
+
+/* CARD DIV */
+.card {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* FLIPPED CARD DIV */
+.card[data-flip="yes"] {
+  transform: rotateY(180deg);
+  transform-origin: center;
+}
+
+/* CARD FRONT */
+.card > img:nth-of-type(2) {
+  transform: rotateY(180deg);
+  transform-origin: center;
+}

@@ -1,5 +1,7 @@
 import { FC, useEffect } from "react";
+import { PlayerCards } from "./playerCards";
 import { IPlayerProps } from "./types";
+import "./cards.css";
 
 const Player: FC<IPlayerProps> = ({
   playerCards,
@@ -13,13 +15,13 @@ const Player: FC<IPlayerProps> = ({
   drawPlayerCard,
   isRoundDone,
   setIsRoundDone,
+  displayImages,
 }) => {
   const handleHit = () => {
     drawPlayerCard();
   };
 
   const handleStand = () => {
-    // TODO - end round/ give dealer turn
     setIsRoundDone(true);
   };
 
@@ -42,14 +44,7 @@ const Player: FC<IPlayerProps> = ({
   return (
     <>
       <h2 data-testid="player-count">Player Count: {playerCount}</h2>
-      <div data-testid="player-cards" data-cardcount={playerCards.length}>
-        {playerCards.map((card, index) => (
-          <p key={index}>
-            {card.value} of {card.suit}
-          </p>
-        ))}
-      </div>
-
+      <PlayerCards playerCards={playerCards} displayImages={displayImages} />
       <div>
         <button onClick={handleHit} disabled={isPlayerBust || isRoundDone}>
           Hit me
