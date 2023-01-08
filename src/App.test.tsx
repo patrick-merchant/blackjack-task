@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Game } from "./containers/game";
+import Game from "./containers/game";
 import { createDeck, shuffle } from "./lib/utils";
 
 describe("deck setup tests", () => {
@@ -49,5 +49,24 @@ describe("scenario tests", () => {
     const playerCards = screen.getByTestId("player-cards");
     expect(playerCards).toHaveAttribute("data-cardcount", "3");
     expect(playerCount.textContent).not.toEqual(oldPlayerCount);
+  });
+
+  test("when stand, player receives no further cards and score is evaluated", () => {
+    render(<Game />);
+    // deal two cards and stand
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+    const standButton = screen.getByText("Stand");
+    fireEvent.click(standButton);
+
+    // try to hit - no further cards dealt as button is disabled
+    let hitButton = screen.getByText("Hit me");
+    fireEvent.click(hitButton);
+    const playerCards = screen.getByTestId("player-cards");
+    expect(playerCards).toHaveAttribute("data-cardcount", "2");
+
+    // evaluate score/result - check it is defined
+    const playerResult = screen.getByTestId("player-result");
+    expect(playerResult.textContent).toBeDefined();
   });
 });
