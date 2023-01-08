@@ -5,11 +5,8 @@ import "./cards.css";
 
 const Player: FC<IPlayerProps> = ({
   playerCards,
-  setPlayerCards,
   playerCount,
   setPlayerCount,
-  deck,
-  setDeck,
   isPlayerBust,
   setIsPlayerBust,
   drawPlayerCard,
@@ -25,7 +22,7 @@ const Player: FC<IPlayerProps> = ({
     setIsRoundDone(true);
   };
 
-  // Evaluate player count and make Ace weight 1 or 11.
+  // Evaluate player count and automatically set Ace weight to 1 or 11.
   useEffect(() => {
     let arr = [];
     for (let i = 0; i < playerCards.length; i++) {

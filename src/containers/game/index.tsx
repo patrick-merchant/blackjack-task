@@ -14,12 +14,6 @@ const Game = ({ customDeck }: IGameProps) => {
   const [isPlayerBust, setIsPlayerBust] = useState<boolean>(false);
   const [isRoundDone, setIsRoundDone] = useState<boolean>(true);
 
-  const drawPlayerCard = (numOfCards = 1) => {
-    setDeck((deck) => deck.slice(0, deck.length - numOfCards));
-    const nextCards = deck.slice(deck.length - numOfCards, deck.length);
-    setPlayerCards((prevPlayerCards) => [...prevPlayerCards, ...nextCards]);
-  };
-
   const startRound = () => {
     setPlayerCount(0);
     setIsRoundDone(false);
@@ -40,6 +34,13 @@ const Game = ({ customDeck }: IGameProps) => {
     startRound();
   };
 
+  const drawPlayerCard = (numOfCards = 1) => {
+    setDeck((deck) => deck.slice(0, deck.length - numOfCards));
+    const nextCards = deck.slice(deck.length - numOfCards, deck.length);
+    setPlayerCards((prevPlayerCards) => [...prevPlayerCards, ...nextCards]);
+  };
+
+  // track player count
   useEffect(() => {
     let count = 0;
     for (let i = 0; i < playerCards.length; i++) {
@@ -50,14 +51,13 @@ const Game = ({ customDeck }: IGameProps) => {
 
   return (
     <>
-      <button className="custom-button" onClick={handleStartRound}>Start New Round</button>
+      <button className="custom-button" onClick={handleStartRound}>
+        Start New Round
+      </button>
       <Player
         playerCards={playerCards}
-        setPlayerCards={setPlayerCards}
         playerCount={playerCount}
         setPlayerCount={setPlayerCount}
-        deck={deck}
-        setDeck={setDeck}
         isPlayerBust={isPlayerBust}
         setIsPlayerBust={setIsPlayerBust}
         drawPlayerCard={drawPlayerCard}

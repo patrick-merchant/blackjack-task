@@ -113,6 +113,7 @@ export const shuffle = (deck: ICard[]) => {
   return deck;
 };
 
+// map cards to correct graphics
 export const displayImages = (cards: ICard[]) => {
   return cards.map((card, index) => {
     let findImage;
