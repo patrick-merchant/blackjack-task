@@ -33,7 +33,7 @@ describe("deck setup tests", () => {
 describe("scenario tests", () => {
   test("player is dealt two cards on round start", () => {
     render(<Game />);
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
     const playerCards = screen.getByTestId("player-cards");
     expect(playerCards).toHaveAttribute("data-cardcount", "2");
@@ -41,7 +41,7 @@ describe("scenario tests", () => {
 
   test("when hit, player receives extra card and count updates", () => {
     render(<Game />);
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
     let playerCount = screen.getByTestId("player-count");
     const oldPlayerCount = playerCount.textContent;
@@ -55,7 +55,7 @@ describe("scenario tests", () => {
   test("when stand, player receives no further cards and score is evaluated", () => {
     render(<Game />);
     // deal two cards and stand
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
     const standButton = screen.getByText("Stand");
     fireEvent.click(standButton);
@@ -74,7 +74,7 @@ describe("scenario tests", () => {
   test("if score is less than or equal to 21, hand is valid", () => {
     render(<Game />);
     // deal two cards
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
 
     // evaluate count - check it is defined
@@ -90,7 +90,7 @@ describe("scenario tests", () => {
   test("if score is greater than 21, hand is valid", () => {
     render(<Game />);
     // deal two cards
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
 
     // evaluate count - check it is defined
@@ -114,7 +114,7 @@ describe("scenario tests", () => {
         ]}
       />
     );
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
 
     const playerCount = screen.getByTestId("player-count");
@@ -131,7 +131,7 @@ describe("scenario tests", () => {
         ]}
       />
     );
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
 
     const playerCount = screen.getByTestId("player-count");
@@ -148,7 +148,7 @@ describe("scenario tests", () => {
         ]}
       />
     );
-    const startButton = screen.getByText("Start Round");
+    const startButton = screen.getByText("Start New Round");
     fireEvent.click(startButton);
 
     const hitButton = screen.getByText("Hit me");
