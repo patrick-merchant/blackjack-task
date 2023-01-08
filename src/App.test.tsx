@@ -1,3 +1,5 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { Game } from "./containers/game";
 import { createDeck, shuffle } from "./lib/utils";
 
 describe("deck setup tests", () => {
@@ -24,5 +26,28 @@ describe("deck setup tests", () => {
     expect(unshuffledDeck).not.toEqual(shuffledDeck);
     expect(shuffledDeck).not.toEqual(shuffledTwiceDeck);
     expect(shuffledTwiceDeck).not.toEqual(unshuffledDeck);
+  });
+});
+
+describe("scenario tests", () => {
+  test("player is dealt two cards on round start", () => {
+    render(<Game />);
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+    const playerCards = screen.getByTestId("player-cards");
+    expect(playerCards).toHaveAttribute("data-cardcount", "2");
+  });
+
+  test("when hit, player receives extra card and count updates", () => {
+    render(<Game />);
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+    let playerCount = screen.getByTestId("player-count");
+    const oldPlayerCount = playerCount.textContent;
+    const hitButton = screen.getByText("Hit me");
+    fireEvent.click(hitButton);
+    const playerCards = screen.getByTestId("player-cards");
+    expect(playerCards).toHaveAttribute("data-cardcount", "3");
+    expect(playerCount.textContent).not.toEqual(oldPlayerCount);
   });
 });

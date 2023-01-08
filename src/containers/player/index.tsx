@@ -37,12 +37,14 @@ export const Player: FC<IPlayerProps> = ({
 
   return (
     <>
-      <h2>Player Count: {playerCount}</h2>
-      {playerCards.map((card, index) => (
-        <p key={index}>
-          {card.value} of {card.suit}
-        </p>
-      ))}
+      <h2 data-testid="player-count">Player Count: {playerCount}</h2>
+      <div data-testid="player-cards" data-cardcount={playerCards.length}>
+        {playerCards.map((card, index) => (
+          <p key={index}>
+            {card.value} of {card.suit}
+          </p>
+        ))}
+      </div>
 
       <div>
         <button onClick={handleHit}>Hit me</button>
