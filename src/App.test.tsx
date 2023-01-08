@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import { fireEvent, render, screen } from "@testing-library/react";
 import Game from "./containers/game";
 import { createDeck, shuffle } from "./lib/utils";
@@ -68,5 +69,39 @@ describe("scenario tests", () => {
     // evaluate score/result - check it is defined
     const playerResult = screen.getByTestId("player-result");
     expect(playerResult.textContent).toBeDefined();
+  });
+
+  test("if score is less than or equal to 21, hand is valid", () => {
+    render(<Game />);
+    // deal two cards
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+
+    // evaluate count - check it is defined
+    const playerResult = screen.getByTestId("player-result");
+    const playerCount = screen.getByTestId("player-count");
+    expect(playerCount.textContent).toBeDefined();
+
+    if (Number(playerCount.textContent?.substring(14)) <= 21) {
+      expect(playerResult.textContent).toBe("");
+    }
+  });
+
+  test("if score is greater than 21, hand is valid", () => {
+    render(<Game />);
+    // deal two cards
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+
+    // evaluate count - check it is defined
+    const playerResult = screen.getByTestId("player-result");
+    const playerCount = screen.getByTestId("player-count");
+    expect(playerCount.textContent).toBeDefined();
+
+    if (Number(playerCount.textContent?.substring(14)) > 21) {
+      expect(playerResult.textContent).toEqual(
+        "Invalid Hand - Player is Bust!"
+      );
+    }
   });
 });
