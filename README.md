@@ -85,11 +85,11 @@ Setup:
 
 ## Screenshots of Result:
 
-!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_1.png)
+[<img src="./src/assets/blackjack_screenshot_1.png" width="50%"/>](./src/assets/blackjack_screenshot_1.png)
 
-!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_2.png)
+[<img src="./src/assets/blackjack_screenshot_1.png" width="50%"/>](./src/assets/blackjack_screenshot_2.png)
 
-!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_3.png)
+[<img src="./src/assets/blackjack_screenshot_1.png" width="50%"/>](./src/assets/blackjack_screenshot_3.png)
 
 ## Possible Extensions:
 
