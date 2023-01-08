@@ -79,6 +79,8 @@ Allow for rule variations
 - Use styled-components for reusable, readable styling.
 - Start basic and extend - MVP as follows:
   - Set up a shuffled deck.
+    - Decision: Do this with reusable functions to aid testing and DRY code.
+    - Decision: Use ICard interface to give each card a unique "code", as well as a "weight" integer for scoring.
   - Deal cards to player and dealer, in correct order.
   - Track count of each using state.
   - Automate dealer behaviour but allow player interaction (will enable easier testing of scenarios).
