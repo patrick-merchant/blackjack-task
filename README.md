@@ -74,13 +74,15 @@ Allow for rule variations
 
 - Start with a react app to allow possible extension to playable/interactive.
 - Use jest with react-testing-library to write unit tests for each scenario.
+- Follow TDD practices to ensure passing tests.
 - Set up deck using reusable lib and utils functions.
 - Use typescript to maintain type-safety as project grows.
 - Use styled-components for reusable, readable styling.
 - Start basic and extend - MVP as follows:
   - Set up a shuffled deck.
-    - Decision: Do this with reusable functions to aid testing and DRY code.
-    - Decision: Use ICard interface to give each card a unique "code", as well as a "weight" integer for scoring.
+    - Do this with reusable functions to aid testing and DRY code.
+    - Use ICard interface to give each card a unique "code", as well as a "weight" integer for scoring.
+    - Use Fisher-Yates shuffle algorithm to modify array in place, and achieve unbiased permutations (O(n) time-complexity).
   - Deal cards to player and dealer, in correct order.
   - Track count of each using state.
   - Automate dealer behaviour but allow player interaction (will enable easier testing of scenarios).
