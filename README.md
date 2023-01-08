@@ -87,6 +87,7 @@ Allow for rule variations
   - Allow player to hit or stick.
   - Track count of each using state.
   - Satisfy scenarios e.g. if over 21, bust.
+  - How to handle Ace values? Allow player choice? Or automate choice based on player decisions?
 
 Extensions:
 
