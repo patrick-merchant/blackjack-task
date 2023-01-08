@@ -76,6 +76,7 @@ Allow for rule variations
 - Use jest with react-testing-library to write unit tests for each scenario.
 - Set up deck using reusable lib and utils functions.
 - Use typescript to maintain type-safety as project grows.
+- Use styled-components for reusable, readable styling.
 - Start basic and extend - MVP as follows:
   - Set up a shuffled deck.
   - Deal cards to player and dealer, in correct order.
@@ -83,5 +84,6 @@ Allow for rule variations
   - Automate dealer behaviour but allow player interaction (will enable easier testing of scenarios).
 
 Extensions:
+
 - Display cards - add flip effect and deal etc.
 - Add betting for player input?
