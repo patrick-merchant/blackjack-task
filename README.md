@@ -1,46 +1,87 @@
-# Getting Started with Create React App
+# Blackjack Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Task:
 
-## Available Scripts
+Write code that can simulate a hand of blackjack.
 
-In the project directory, you can run:
+## The Game:
 
-### `npm start`
+The goal of the game is to get a hand of cards that’s worth as close to 21 points as possible. If a player’s hand goes over 21 points, they have lost.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The player is initially dealt two cards. They may then choose to ‘hit’ (draw a card) or ‘stand’ (stop drawing cards.) If they ‘hit’, then the new card’s value is added to the hand total. If this total exceeds 21, the player is ‘bust’, and loses.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once all players have finished this process, the highest scoring hand wins.
 
-### `npm test`
+Your solution should model a single deck of 52 cards:
+Number cards are worth their face value (2-10)
+Jacks, queens, and kings are worth 10 each
+Aces are worth either 1 or 11 (player chooses)
+The suit of the card does not matter.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+(These are simplified rules- a full description with gameplay variations can be found at https://en.wikipedia.org/wiki/Blackjack.)
 
-### `npm run build`
+## Tests:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Prove code works with unit tests and Scenarios.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Scenarios:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Given I play a game of blackjack
+When I am dealt my opening hand
+Then I have two cards
 
-### `npm run eject`
+Given I have a valid hand of cards
+When I choose to ‘hit’
+Then I receive another card
+And my score is updated
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Given I have a valid hand of cards
+When I choose to ‘stand’
+Then I receive no further cards
+And my score is evaluated
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Given my score is updated or evaluated
+When it is 21 or less
+Then I have a valid hand
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Given my score is updated
+When it is 22 or more
+Then I am ‘bust’ and do not have a valid hand
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Given I have a king and an ace
+When my score is evaluated
+Then my score is 21
 
-## Learn More
+Given I have a king, a queen, and an ace
+When my score is evaluated
+Then my score is 21
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Given that I have a nine, an ace, and another ace
+When my score is evaluated
+Then my score is 21
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Possible Extensions:
+
+Display the player’s cards (text or graphics)
+Invite player input
+Allow for multiple players
+Allow for multiple hands
+Allow for rule variations
+
+# Solution:
+
+## Design decisions:
+
+- Start with a react app to allow possible extension to playable/interactive.
+- Use jest with react-testing-library to write unit tests for each scenario.
+- Set up deck using reusable lib and utils functions.
+- Use typescript to maintain type-safety as project grows.
+- Start basic and extend - MVP as follows:
+  - Set up a shuffled deck.
+  - Deal cards to player and dealer, in correct order.
+  - Track count of each using state.
+  - Automate dealer behaviour but allow player interaction (will enable easier testing of scenarios).
+
+Extensions:
+- Display cards - add flip effect and deal etc.
+- Add betting for player input?
