@@ -60,24 +60,18 @@ Given that I have a nine, an ace, and another ace
 When my score is evaluated
 Then my score is 21
 
-## Possible Extensions:
-
-Display the player’s cards (text or graphics)
-Invite player input
-Allow for multiple players
-Allow for multiple hands
-Allow for rule variations
-
 # Solution:
 
 ## Design decisions:
+
+Setup:
 
 - Start with a react app to allow possible extension to playable/interactive.
 - Use jest with react-testing-library to write unit tests for each scenario.
 - Follow TDD practices to ensure passing tests.
 - Set up deck using reusable lib and utils functions.
 - Use typescript to maintain type-safety as project grows.
-- Use styled-components for reusable, readable styling.
+- Use plain css for basic, fast and readable styling.
 - Start basic and extend - MVP as follows:
   - Set up a shuffled deck.
     - Do this with reusable functions to aid testing and DRY code.
@@ -87,10 +81,21 @@ Allow for rule variations
   - Allow player to hit or stick.
   - Track count of each using state.
   - Satisfy scenarios e.g. if over 21, bust.
-  - How to handle Ace values? Allow player choice? Or automate choice based on player decisions?
+  - How to handle Ace values? Allow player choice? Or automate choice based on player decisions? The latter seems neater.
 
-Extensions:
+## Screenshots of Result:
 
+!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_1.png)
+
+!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_2.png)
+
+!["A screenshot of a hand of Blackjack](./src/assets/blackjack_screenshot_3.png)
+
+## Possible Extensions:
+
+- Display cards - add flip effect and deal etc. Completed.
 - Automate dealer behaviour.
-- Display cards - add flip effect and deal etc.
 - Add betting for player input?
+- Allow for multiple players
+- Allow for multiple hands
+- Allow for rule variations
