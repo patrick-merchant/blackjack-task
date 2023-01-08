@@ -104,4 +104,57 @@ describe("scenario tests", () => {
       );
     }
   });
+
+  test("if player has King and Ace, score is 21", () => {
+    render(
+      <Game
+        customDeck={[
+          { suit: "Hearts", value: "K", code: "HK", weight: 10 },
+          { suit: "Hearts", value: "A", code: "HA", weight: 1 },
+        ]}
+      />
+    );
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+
+    const playerCount = screen.getByTestId("player-count");
+    expect(playerCount.textContent?.substring(14)).toBe("21");
+  });
+
+  test("if player has King, a Queen, and an Ace, score is 21", () => {
+    render(
+      <Game
+        customDeck={[
+          { suit: "Hearts", value: "K", code: "HK", weight: 10 },
+          { suit: "Hearts", value: "Q", code: "HQ", weight: 10 },
+          { suit: "Hearts", value: "A", code: "HA", weight: 1 },
+        ]}
+      />
+    );
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+
+    const playerCount = screen.getByTestId("player-count");
+    expect(playerCount.textContent?.substring(14)).toBe("21");
+  });
+
+  test("if player has a Nine, an Ace, and an Ace, score is 21", () => {
+    render(
+      <Game
+        customDeck={[
+          { suit: "Hearts", value: "9", code: "H9", weight: 9 },
+          { suit: "Spades", value: "A", code: "SA", weight: 1 },
+          { suit: "Hearts", value: "A", code: "HA", weight: 1 },
+        ]}
+      />
+    );
+    const startButton = screen.getByText("Start Round");
+    fireEvent.click(startButton);
+
+    const hitButton = screen.getByText("Hit me");
+    fireEvent.click(hitButton);
+
+    const playerCount = screen.getByTestId("player-count");
+    expect(playerCount.textContent?.substring(14)).toBe("21");
+  });
 });

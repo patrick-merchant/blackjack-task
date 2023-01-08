@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { shuffle, createDeck } from "../../lib/utils";
 import Player from "../player";
 import { ICard } from "../../lib/types";
+import { IGameProps } from "./types";
 
-const Game = () => {
-  const [deck, setDeck] = useState(shuffle(createDeck()));
+const Game = ({ customDeck }: IGameProps) => {
+  const [deck, setDeck] = useState(
+    customDeck ? customDeck : shuffle(createDeck())
+  );
   const [playerCount, setPlayerCount] = useState<number>(0);
   const [playerCards, setPlayerCards] = useState<ICard[]>([]);
   const [isPlayerBust, setIsPlayerBust] = useState<boolean>(false);
