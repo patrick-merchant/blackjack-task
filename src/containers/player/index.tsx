@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { IPlayerProps } from "./types";
 
-export const Player: FC<IPlayerProps> = ({
+const Player: FC<IPlayerProps> = ({
   playerCards,
   setPlayerCards,
   playerCount,
@@ -11,13 +11,16 @@ export const Player: FC<IPlayerProps> = ({
   isPlayerBust,
   setIsPlayerBust,
   drawPlayerCard,
+  isRoundDone,
+  setIsRoundDone,
 }) => {
   const handleHit = () => {
     drawPlayerCard();
   };
 
-  const handleStick = () => {
+  const handleStand = () => {
     // TODO - end round/ give dealer turn
+    setIsRoundDone(true);
   };
 
   // Evaluate player count and make Ace weight 1 or 11.
@@ -32,6 +35,7 @@ export const Player: FC<IPlayerProps> = ({
 
     if (playerCount > 21) {
       setIsPlayerBust(true);
+      setIsRoundDone(true);
     }
   });
 
@@ -47,9 +51,23 @@ export const Player: FC<IPlayerProps> = ({
       </div>
 
       <div>
-        <button onClick={handleHit}>Hit me</button>
-        <button onClick={handleStick}>Stick</button>
+        <button onClick={handleHit} disabled={isPlayerBust || isRoundDone}>
+          Hit me
+        </button>
+        <button onClick={handleStand} disabled={isPlayerBust || isRoundDone}>
+          Stand
+        </button>
       </div>
+
+      <h3 data-testid="player-result">
+        {isPlayerBust
+          ? "Invalid Hand - Player is Bust!"
+          : isRoundDone
+          ? `Round Over! Player Score: ${playerCount}`
+          : undefined}
+      </h3>
     </>
   );
 };
+
+export default Player;

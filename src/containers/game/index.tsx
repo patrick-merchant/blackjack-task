@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { shuffle, createDeck } from "../../lib/utils";
-import { Player } from "../player";
+import Player from "../player";
 import { ICard } from "../../lib/types";
 
-export const Game = () => {
+const Game = () => {
   const [deck, setDeck] = useState(shuffle(createDeck()));
   const [playerCount, setPlayerCount] = useState<number>(0);
   const [playerCards, setPlayerCards] = useState<ICard[]>([]);
   const [isPlayerBust, setIsPlayerBust] = useState<boolean>(false);
+  const [isRoundDone, setIsRoundDone] = useState<boolean>(true);
 
   const drawPlayerCard = (numOfCards = 1) => {
     setDeck((deck) => deck.slice(0, deck.length - numOfCards));
@@ -19,6 +20,7 @@ export const Game = () => {
   const startRound = () => {
     setPlayerCards([]);
     setPlayerCount(0);
+    setIsRoundDone(false);
     setIsPlayerBust(false);
     drawPlayerCard(2);
   };
@@ -47,7 +49,11 @@ export const Game = () => {
         isPlayerBust={isPlayerBust}
         setIsPlayerBust={setIsPlayerBust}
         drawPlayerCard={drawPlayerCard}
+        isRoundDone={isRoundDone}
+        setIsRoundDone={setIsRoundDone}
       />
     </>
   );
 };
+
+export default Game;

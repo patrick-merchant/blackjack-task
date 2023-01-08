@@ -11,4 +11,6 @@ export interface IPlayerProps {
   isPlayerBust: boolean;
   setIsPlayerBust: Dispatch<SetStateAction<boolean>>;
   drawPlayerCard: (numOfCards?: number) => void;
+  isRoundDone: boolean;
+  setIsRoundDone: Dispatch<SetStateAction<boolean>>;
 }
