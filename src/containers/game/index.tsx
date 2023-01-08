@@ -50,7 +50,7 @@ const Game = ({ customDeck }: IGameProps) => {
 
   return (
     <>
-      <button onClick={handleStartRound}>Start New Round</button>
+      <button className="custom-button" onClick={handleStartRound}>Start New Round</button>
       <Player
         playerCards={playerCards}
         setPlayerCards={setPlayerCards}

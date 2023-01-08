@@ -46,10 +46,18 @@ const Player: FC<IPlayerProps> = ({
       <h2 data-testid="player-count">Player Count: {playerCount}</h2>
       <PlayerCards playerCards={playerCards} displayImages={displayImages} />
       <div>
-        <button onClick={handleHit} disabled={isPlayerBust || isRoundDone}>
+        <button
+          className="custom-button"
+          onClick={handleHit}
+          disabled={isPlayerBust || isRoundDone}
+        >
           Hit me
         </button>
-        <button onClick={handleStand} disabled={isPlayerBust || isRoundDone}>
+        <button
+          className="custom-button"
+          onClick={handleStand}
+          disabled={isPlayerBust || isRoundDone}
+        >
           Stand
         </button>
       </div>
