@@ -83,11 +83,13 @@ Allow for rule variations
     - Do this with reusable functions to aid testing and DRY code.
     - Use ICard interface to give each card a unique "code", as well as a "weight" integer for scoring.
     - Use Fisher-Yates shuffle algorithm to modify array in place, and achieve unbiased permutations (O(n) time-complexity).
-  - Deal cards to player and dealer, in correct order.
+  - Deal cards to player.
+  - Allow player to hit or stick.
   - Track count of each using state.
-  - Automate dealer behaviour but allow player interaction (will enable easier testing of scenarios).
+  - Satisfy scenarios e.g. if over 21, bust.
 
 Extensions:
 
+- Automate dealer behaviour.
 - Display cards - add flip effect and deal etc.
 - Add betting for player input?
